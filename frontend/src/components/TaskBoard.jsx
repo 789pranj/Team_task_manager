@@ -11,7 +11,7 @@ export const TaskBoard = ({ projectId, onTaskChange }) => {
 
   const moveTask = async (task, status) => {
     await updateTask(task._id, { status });
-    fetchTasks(projectId);
+    await fetchTasks(projectId);
     onTaskChange();
   };
 

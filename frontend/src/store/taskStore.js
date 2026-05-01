@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { getTasks, createTask, updateTask } from "../api/task";
+import { getTasks, createTask, updateTask as updateTaskAPI } from "../api/task";
 
 export const useTaskStore = create((set) => ({
   tasks: [],
@@ -17,7 +17,8 @@ export const useTaskStore = create((set) => ({
   },
 
   updateTask: async (id, data) => {
-    const res = await updateTask(id, data);
+    const res = await updateTaskAPI(id, data);
+
     set((state) => ({
       tasks: state.tasks.map((t) =>
         t._id === id ? res.data : t
